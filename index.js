@@ -34,29 +34,22 @@ client.connect((err) => {
 
   app.post("/addProduct", (req, res) => {
     const newProduct = req.body;
-    // console.log("adding new product: ", newProduct);
     productCollection.insertOne(newProduct).then((result) => {
       // console.log("inserted count", result.insertedCount);
       res.send(result.insertedCount > 0);
     });
   });
-  // console.log('db cnnct successfully');
-  // perform actions on the collection object
-  //   client.close();
 
   app.get("/checkout/:_id", (req, res) => {
-    // console.log(req.params._id);
     productCollection
       .find({ _id: ObjectId(req.params._id) })
       .toArray((err, documents) => {
-        // console.log("from db check", documents);
         res.send(documents);
       });
   });
 
   app.post("/addOrders", (req, res) => {
     const newOrder = req.body;
-    // console.log("adding new order", newOrder);
     productCollectionForOrder.insertOne(newOrder).then((result) => {
       res.send(result.insertedCount > 0);
     });
@@ -66,7 +59,6 @@ client.connect((err) => {
     productCollectionForOrder
       .find({ email: req.query.email })
       .toArray((err, items) => {
-        // console.log("from db", items);
         res.send(items);
       });
   });
