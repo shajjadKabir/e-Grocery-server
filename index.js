@@ -23,8 +23,8 @@ const client = new MongoClient(uri, {
 
 client.connect((err) => {
   console.log("connection err", err);
-  const productCollection = client.db("food").collection("product");
-  const productCollectionForOrder = client.db("food").collection("order");
+  const productCollection = client.db(`${process.env.DB_NAME}`).collection("product");
+  const productCollectionForOrder = client.db(`${process.env.DB_NAME}`).collection("order");
 
   app.get("/products", (req, res) => {
     productCollection.find().toArray((err, items) => {
