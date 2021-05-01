@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.send("hello from other side..");
 });
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.t1m6g.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
